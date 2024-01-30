@@ -1,87 +1,91 @@
 1.
-total = 0
+def bigmult(*numbers):
+    n = 1
 
-list1 = [27, 9, 2, 9, 29]
+    for i in numbers:
+        n *= i
+
+    return n
 
 
-
-for ele in range(0, len(list1)):
-	total = total + list1[ele]
+print(bigmult(9, 11, 13))
 
 
-print("Сумма: ", total)
 
 2.
-def large(arr):
-    max_ = arr[0]
-    for ele in arr:
-        if ele > max_:
-           max_ = ele
-    return max_
+def find_minimum(numbers):
+    if not numbers:
 
+        return None
 
-list1 = [1,4,5,2,6]
-result = large(list1)
-print(result)
+    min_val = numbers[0]
+
+    for num in numbers:
+        if num < min_val:
+            min_val = num
+
+    return min_val
+numbers_list = [17, 21, 8, 2, 4]
+result = find_minimum(numbers_list)
+print(f"минимум: {result}")
 
 
 3.
-def analyze_numbers(numbers):
-    even_count = 0
+def num_1(*args):
+    count = 0
 
-    odd_count = 0
+    for num in args:
+        if is_prime(num):
+            count += 1
+    return count
 
-    positive_count = 0
 
-    negative_count = 0
-    for number in numbers:
-        if number % 2 == 0:
+def is_prime(num):
+    prime = num > 1 and (num % 2 != 0 or num == 2) and (num % 3 != 0 or num == 8)
+    i = 7;
+    d = 9;
 
-            even_count += 1
+    while prime and i * i <= num:
+        prime = num % i != 0
+        i += d
+        d = 6 - d
+    return prime
 
-        else:
 
-            odd_count += 1
-            if number > 0:
-
-                positive_count += 1
-
-            elif number < 0:
-
-                negative_count += 1
-                return even_count, odd_count, positive_count, negative_count
-
-numbers_list = [1, 2, 3, -4, 0, -5, 6]
-
-result = analyze_numbers(numbers_list)
-print("Количество парных елементов:", result[0])
-
-print("Количество непарных елементов:", result[1])
-
-print("Количество положительных елементов:", result[2])
-
-print("Количество отрицательных елементов:", result[3])
+print(num_1(-7, 5, 7, 11, 65))
 
 
 4.
-def Reverse(lst):
-    new_lst = lst[::-1]
-    return new_lst
-lst = [5,9,11,27,56]
-print(Reverse(lst))
+def remove_and_count(lst, number_to_remove):
+    deleted_items_count = 0
+    while number_to_remove in lst:
+        lst.remove(number_to_remove)
+        deleted_items_count += 1
+
+    return deleted_items_count
+my_list = [1, 2, 3, 4, 2, 5, 2, 6]
+number_to_remove = 2
+
+deleted_count = remove_and_count(my_list, number_to_remove)
+
+print(f"список: {my_list}")
+print(f"удаленный: {deleted_count}")
+print(f"после: {my_list}")
+
+6.
+def list_as_power_from_input_list(power_value, list_for_operation):
+    try:
+        list_for_return = [i ** power_value for i in list_for_operation]
+
+    except Exception:
+        list_for_return = ["incorrect input"]
+    return list_for_return
 
 
-5.
-def factorial(n):
-    if n == 0 or n == 1:
-        return 1
-    else:
-        return n * factorial(n-1)
-
-def calculate_factorials(input_list):
-    return [factorial(num) for num in input_list]
+my_list = [2, 7, 5, 23, -91, 6, 6, 1, 231, 29]
+print(my_list)
+print(list_as_power_from_input_list(2, my_list))
 
 
-input_list = [17, 9, 1]
-result = calculate_factorials(input_list)
-print(result)
+
+
